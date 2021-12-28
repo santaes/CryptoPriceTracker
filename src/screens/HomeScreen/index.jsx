@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, RefreshControl } from "react-native";
+import { FlatList, RefreshControl, Text, View } from "react-native";
 import CoinItem from "../../components/CoinItem";
 import { getMarketData } from "../../services/requests";
 
@@ -10,17 +10,15 @@ const HomeScreen = () => {
   const fetchCoins = async (pageNumber) => {
     if (loading) {
       return;
-
     }
     setLoading(true);
     const coinsData = await getMarketData(pageNumber);
-    setCoins((existingCoins) => ([...existingCoins, ...coinsData]));
+    setCoins((existingCoins) => [...existingCoins, ...coinsData]);
     setLoading(false);
   };
   const refetchCoins = async () => {
     if (loading) {
       return;
-      
     }
     setLoading(true);
     const coinsData = await getMarketData();
@@ -32,19 +30,32 @@ const HomeScreen = () => {
     fetchCoins();
   }, []);
   return (
-    <FlatList
-      data={coins}
-      renderItem={({ item }) => <CoinItem marketCoin={item} />}
-      onEndReached={() => fetchCoins((coins.length / 50) + 1)}
-      refreshControl={
-        <RefreshControl
-          refreshing={loading}
-          tintColor="#ffffff"
-          onRefresh={refetchCoins}
-          
-        />
-      }
-    />
+    <View>
+      <Text
+        style={{
+          color: "#ffffff",
+          fontSize: 25,
+          letterSpacing: 1,
+          paddingHorizontal: 20,
+          paddingBottom: 10,
+          fontFamily: "Gilroy",
+        }}
+      >
+        CryptoAssets
+      </Text>
+      <FlatList
+        data={coins}
+        renderItem={({ item }) => <CoinItem marketCoin={item} />}
+        onEndReached={() => fetchCoins(coins.length / 50 + 1)}
+        refreshControl={
+          <RefreshControl
+            refreshing={loading}
+            tintColor="#ffffff"
+            onRefresh={refetchCoins}
+          />
+        }
+      />
+    </View>
   );
 };
 

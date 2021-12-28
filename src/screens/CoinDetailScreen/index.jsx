@@ -18,6 +18,16 @@ import {
 } from "@rainbow-me/animated-charts";
 import { useRoute } from "@react-navigation/native";
 import { getCoinMarketChart, getDetailCoinData } from "../../services/requests";
+import FilterComponent from "./FilterComponent";
+
+const filterDaysArray = [
+  { filterDay: "1", filterText: "24 H" },
+  
+  { filterDay: "7", filterText: "7 D" },
+  { filterDay: "30", filterText: "30 D" },
+  { filterDay: "365", filterText: "1 Y" },
+  { filterDay: "max", filterText: "All time" },
+];
 
 const CoinDetailScreen = () => {
   const [coin, setCoin] = useState(null);
@@ -26,6 +36,7 @@ const CoinDetailScreen = () => {
   const [loading, setLoading] = useState(false);
   const [coinValue, setCoinValue] = useState("1");
   const [usdValue, setUsdValue] = useState("");
+  const [selectedRange, setSelectedRange] = useState("1");
 
   const route = useRoute();
 
@@ -36,15 +47,27 @@ const CoinDetailScreen = () => {
   const fetchCoinData = async () => {
     setLoading(true);
     const fetchedCoinData = await getDetailCoinData(coinId);
-    const fetchedCoinMarketData = await getCoinMarketChart(coinId);
+    const fetchedCoinMarketData = await getCoinMarketChart(
+      coinId,
+      selectedRange
+    );
     setCoin(fetchedCoinData);
     setCoinMarketData(fetchedCoinMarketData);
     setUsdValue(fetchedCoinData.market_data.current_price.usd.toString());
     setLoading(false);
   };
 
+  const fetchMarketCoinData = async (selectedRangeValue) => {
+    const fetchedCoinMarketData = await getCoinMarketChart(
+      coinId,
+      selectedRangeValue
+    );
+    setCoinMarketData(fetchedCoinMarketData);
+  };
+
   useEffect(() => {
     fetchCoinData();
+    fetchMarketCoinData(1);
   }, []);
 
   if (loading || !coin || !coinMarketData) {
@@ -67,7 +90,13 @@ const CoinDetailScreen = () => {
   const formatCurrency = (value) => {
     "worklet";
     if (value === "") {
+      if (current_price.usd < 1) {
+        return `${current_price.usd} US $`;
+      }
       return `${current_price.usd.toFixed(2)} US $`;
+    }
+    if (current_price.usd < 1) {
+      return `${parseFloat(value).toFixed(8)} US $`;
     }
     return `${parseFloat(value).toFixed(2)} US $`;
   };
@@ -88,12 +117,18 @@ const CoinDetailScreen = () => {
   const chartColor = current_price.usd > prices[0][1] ? "#16c784" : "#ea3943";
 
   const screenWidth = Dimensions.get("window").width;
+
+  const onSelectedRangeChange = (selectedRangeValue) => {
+    setSelectedRange(selectedRangeValue);
+    fetchMarketCoinData(selectedRangeValue);
+  };
+
   return (
     <View style={{ paddingHorizontal: 10 }}>
       <ChartPathProvider
         data={{
           points: prices.map(([x, y]) => ({ x, y })),
-          smoothingStrategy: "bezier",
+          /* smoothingStrategy: "bezier", */
         }}
       >
         <Header
@@ -128,6 +163,19 @@ const CoinDetailScreen = () => {
             </Text>
           </View>
         </View>
+        <View style={styles.filtersContainer}>
+          {filterDaysArray.map((day) => (
+            <FilterComponent
+            filterDay={day.filterDay}
+            filterText={day.filterText}
+            selectedRange={selectedRange}
+            setSelectedRange={onSelectedRangeChange}
+            key={day.filterText}
+          />
+          ))}
+          
+
+        </View>
         <View>
           <ChartPath
             strokeWidth={2}
@@ -147,6 +195,7 @@ const CoinDetailScreen = () => {
               value={coinValue}
               keyboardType="numeric"
               onChangeText={changeCoinValue}
+              returnKeyType="done"
             />
           </View>
 
@@ -157,6 +206,7 @@ const CoinDetailScreen = () => {
               value={usdValue}
               keyboardType="numeric"
               onChangeText={changeUsdValue}
+              returnKeyType="done"
             />
           </View>
         </View>

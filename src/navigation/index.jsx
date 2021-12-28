@@ -23,9 +23,17 @@ const Navigation = () => {
       <Stack.Screen
         name={"AddNewAssetScreen"}
         component={AddNewAssetScreen}
-        options={{ headerShown: false }}
+        options={{
+          title: "Add New Asset",
+          headerStyle: {
+            backgroundColor: "#121212",
+          },
+          headerTintColor: "#ffffff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
       />
-      
     </Stack.Navigator>
   );
 };

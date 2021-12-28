@@ -33,13 +33,16 @@ const WatchListScreen = () => {
   }, []); */
 
   useEffect(() => {
-    fetchWatchListedCoins();
+    if(watchListCoinIds.length > 0) {
+      fetchWatchListedCoins();
+    }
+    
   }, [watchListCoinIds]);
 
   return (
     <FlatList
       data={coins}
-      renderItem={({ item }) =>  <CoinItem marketCoin={item} /> }
+      renderItem={({ item }) =>    <CoinItem marketCoin={item} /> }
       refreshControl={
         <RefreshControl
           refreshing={loading}

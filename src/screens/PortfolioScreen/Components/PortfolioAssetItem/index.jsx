@@ -3,29 +3,45 @@ import { View, Text, Image } from "react-native";
 import styles from "./styles";
 import { AntDesign } from "@expo/vector-icons";
 
-const PortfolioAssetItem = () => {
+
+const PortfolioAssetItem = ({ assetItem }) => {
+  const {
+    currentPrice,
+    image,
+    name,
+    priceBought,
+    priceChangePercentage,
+    quantityBought,
+    ticker,
+  } = assetItem;
+
+  const isChangePositive = () => priceChangePercentage >= 0 ;
+
+ 
+  
+
   return (
     <View style={styles.coinContainer}>
-      <Image source={{ uri: "" }} style={styles.image} />
+      <Image source={{ uri: image}} style={styles.image} />
       <View>
-        <Text style={styles.name}>Bitcoin</Text>
-        <Text style={styles.ticker}>BTC</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.ticker}>{ticker}</Text>
       </View>
-      <View style={{marginLeft:'auto'}}>
-        <Text style={styles.name}>4000$</Text>
-        <View style={{ flexDirection: "row" }}>
+      <View style={{ marginLeft: "auto",alignItems:'flex-end' }}>
+        <Text style={styles.name}>{currentPrice?.toFixed(2)}$</Text>
+        <View style={{ flexDirection: "row",alignSelf:'flex-end' }}>
           <AntDesign
-            name={"caretup"}
+            name={isChangePositive() ? "caretup" : "caretdown"}
             size={13}
-            color={"#16c784"}
+            color={isChangePositive() ?   "#16c784" : "#ea3943" }
             style={{ alignSelf: "center", marginRight: 5 }}
           />
-          <Text style={{color:"#16c784", fontWeight:'700'}}>1.2%</Text>
+          <Text style={{ color: isChangePositive() ?  "#16c784" : "#ea3943", fontWeight: "700",alignSelf:'center', }}>{priceChangePercentage?.toFixed(2)}%</Text>
         </View>
       </View>
       <View style={styles.quantityContainer}>
-          <Text style={styles.name}>80000$</Text>
-          <Text style={styles.ticker}>2 BTC</Text>
+        <Text style={styles.name}>{(currentPrice * quantityBought)?.toFixed(3)}$</Text>
+        <Text style={styles.ticker}>{quantityBought} {ticker}</Text>
       </View>
     </View>
   );

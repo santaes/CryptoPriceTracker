@@ -10,11 +10,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginHorizontal: 5,
     fontSize: 17,
+    fontFamily: "Gilroy",
+    
   },
   rank: {
     color: "#ffffff",
     fontWeight: "bold",
     fontSize: 15,
+    fontFamily: "Gilroy",
   },
   rankContainer: {
     backgroundColor: "#565656",
@@ -37,10 +40,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "600",
     letterSpacing: 1,
+    fontFamily: "Gilroy",
   },
   name: {
     color: "#ffffff",
     fontSize: 16,
+    fontFamily: "Gilroy",
   },
   priceContainer: {
     padding: 15,
@@ -63,6 +68,18 @@ const styles = StyleSheet.create({
     fontSize:16,
     color:'#ffffff'
   },
+  filtersContainer:{
+    flexDirection:'row',
+    justifyContent:'space-around',
+    backgroundColor:"#2b2b2b",
+    paddingVertical:5,
+    borderRadius: 5,
+    marginHorizontal:10,
+    marginVertical:10,
+
+
+  },
+  
 });
 
 export default styles;

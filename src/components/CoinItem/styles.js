@@ -6,10 +6,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     marginBottom: 3,
+    fontFamily: "Gilroy",
   },
   text: {
     color: "#ffffff",
     marginRight: 5,
+    fontFamily: "Gilroy",
   },
   coinContainer: {
     flexDirection: "row",
@@ -20,6 +22,7 @@ const styles = StyleSheet.create({
   rank: {
     fontWeight: "bold",
     color: "#ffffff",
+    fontFamily: "Gilroy",
   },
   rankContainer: {
     backgroundColor: "#585858",

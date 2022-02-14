@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { FlatList, RefreshControl, Text, View } from "react-native";
-import CoinItem from "../../components/CoinItem";
-import { getMarketData } from "../../services/requests";
+import React, { useEffect, useState } from 'react';
+import { FlatList, RefreshControl, Text, View, Image } from 'react-native';
+import CoinItem from '../../components/CoinItem';
+import { getMarketData } from '../../services/requests';
 
 const HomeScreen = () => {
   const [coins, setCoins] = useState([]);
@@ -31,18 +31,53 @@ const HomeScreen = () => {
   }, []);
   return (
     <View>
-      <Text
+      <View
         style={{
-          color: "#ffffff",
-          fontSize: 25,
-          letterSpacing: 1,
-          paddingHorizontal: 20,
-          paddingBottom: 10,
-          fontFamily: "Gilroy",
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          height: '5%',
         }}
       >
-        CryptoAssets
-      </Text>
+        <Text
+          style={{
+            color: '#ffffff',
+            fontSize: 20,
+            letterSpacing: 1,
+            paddingHorizontal: 22,
+
+            fontFamily: 'Gilroy',
+          }}
+        >
+          Batsol Crypto Tracker
+        </Text>
+        <View style={{ marginRight: '10%' }}>
+          <View
+            style={{
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 10,
+                color: '#c0c0c0',
+              }}
+            >
+              Powered by
+            </Text>
+            <Text
+              style={{
+                fontSize: 10,
+                color: '#c0c0c0',
+              }}
+            >
+              CoinGecko
+            </Text>
+          </View>
+        </View>
+      </View>
+
       <FlatList
         data={coins}
         renderItem={({ item }) => <CoinItem marketCoin={item} />}
@@ -50,7 +85,7 @@ const HomeScreen = () => {
         refreshControl={
           <RefreshControl
             refreshing={loading}
-            tintColor="#ffffff"
+            tintColor='#ffffff'
             onRefresh={refetchCoins}
           />
         }

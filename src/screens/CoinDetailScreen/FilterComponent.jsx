@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
-import { Text, Pressable } from 'react-native';
+import { Text, Pressable, TouchableOpacity } from 'react-native';
 
 const FilterComponent = (props) => {
   const { filterDay, filterText, selectedRange, setSelectedRange } = props;
   const isFilterSelected = (filter) => filter === selectedRange;
 
   return (
-    <Pressable
+    <TouchableOpacity
       style={{
         paddingHorizontal: 10,
         paddingVertical: 5,
@@ -22,7 +22,7 @@ const FilterComponent = (props) => {
       >
         {filterText}
       </Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 

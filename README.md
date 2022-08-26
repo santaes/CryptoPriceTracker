@@ -2,6 +2,9 @@
 
 Install the below tools/packages
 
+
+
+
 | Serial No |     Software     |  | Installation site                                                          |
 | :-------: | :--------------: |  | :------------------------------------------------------------------------- |
 |     1     |     Node.js      |  | [Install NodeJS](https://nodejs.org/en/download/)                          |
@@ -9,9 +12,11 @@ Install the below tools/packages
 |     3     |   react-native   |  | [Install react-native](https://www.npmjs.com/package/react-native)         |
 |     4     |       exp        |  | [Install Expo](https://www.npmjs.com/package/exp)                          |
 
-### Setup Instructions
 
-#### System setup
+
+### Setup Instructions.
+
+#### System setup.
 
 1. Clone the repo with `git clone [REPO_URL]` command
 2. Switch to the project's root directory in terminal
@@ -21,7 +26,7 @@ Install the below tools/packages
 
 Ignore the first step on 'Mobile setup' instructions given below if you already have 'Expo' app installed on your phone.
 
-#### Mobile setup
+#### Mobile setup.
 
 1. Install 'Expo' application on your android/iOS device. You can find the links to Android and iOS apps [here](https://expo.io/tools#client).
 2. Scan the QR code shown on the terminal.

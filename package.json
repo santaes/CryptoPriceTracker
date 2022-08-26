@@ -34,7 +34,8 @@
     "react-native-wagmi-charts": "^2.1.0",
     "react-native-web": "~0.18.7",
     "recoil": "^0.5.2",
-    "expo-updates": "~0.14.4"
+    "expo-updates": "~0.14.4",
+    "@expo/webpack-config": "^0.17.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6"

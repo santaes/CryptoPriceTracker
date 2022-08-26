@@ -1,4 +1,4 @@
-### Software prerequisites
+### Software prerequisites.
 
 Install the below tools/packages
 

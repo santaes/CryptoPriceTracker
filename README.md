@@ -2,12 +2,12 @@
 
 Install the below tools/packages
 
-| Serial No | Software | | Installation site |
-| :-------: | :--------------: | | :------------------------------------------------------------------------- |
-| 1 | Node.js | | [Install NodeJS](https://nodejs.org/en/download/) |
-| 2 | npm | | [Install NPM](https://www.npmjs.com/get-npm) |
-| 3 | react-native | | [Install react-native](https://www.npmjs.com/package/react-native) |
-| 4 | exp | | [Install Expo](https://www.npmjs.com/package/exp) |
+| Serial No |     Software     |  | Installation site                                                          |
+| :-------: | :--------------: |  | :------------------------------------------------------------------------- |
+|     1     |     Node.js      |  | [Install NodeJS](https://nodejs.org/en/download/)                          |
+|     2     |       npm        |  | [Install NPM](https://www.npmjs.com/get-npm)                               |
+|     3     |   react-native   |  | [Install react-native](https://www.npmjs.com/package/react-native)         |
+|     4     |       exp        |  | [Install Expo](https://www.npmjs.com/package/exp)                          |
 
 ### Setup Instructions
 
